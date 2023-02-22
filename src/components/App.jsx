@@ -1,26 +1,96 @@
-export const App = () => {
-  return (
-    <>
-<div>
-  <p>Please, leave fedback</p>
-  <div>
-    <button type="button">Good</button>
-    <button type="button">Neutral</button>
-    <button type="button">Bad</button>
-  </div>
-</div>
-  <div>
-    <h1>Statistics</h1>
-    <ul>
-      <li>Good: { }</li>
-      <li>Neutral: { }</li>
-      <li>Bad: { }</li>
-      <li>Total: { }</li>
-      <li>Positive feedback: { }</li>
-    </ul>
-  </div>
-</>
-  );
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Statistic from './Statistic';
+import Feedback from './Feedback';
+import Notification from './Notification';
+import Section from './Section';
+
+class App extends Component {
+  state = {
+    g: 0,
+    n: 0,
+    b: 0,
+  };
+
+  handleFeedback = event => {
+    const { name } = event.target;
+    switch (name) {
+      case 'g':
+        this.setState(prevState => ({
+          g: prevState.g + 1,
+        }));
+        break;
+
+      case 'n':
+        this.setState(prevState => ({
+          n: prevState.n + 1,
+        }));
+        break;
+
+      case 'b':
+        this.setState(prevState => ({
+          b: prevState.b + 1,
+        }));
+        break;
+
+      default:
+        throw new Error('error');
+    }
+  };
+
+  countTotalFeedback(a, b, c) {
+    return a + b + c;
+  }
+
+  countPositiveFeedbackPercentage(g, n, b) {
+    return Math.floor((g / (g + n + b)) * 100);
+  }
+
+  render() {
+    const { g, n, b } = this.state;
+    const {
+      handleFeedback,
+      countTotalFeedback,
+      countPositiveFeedbackPercentage,
+    } = this;
+    const total = countTotalFeedback(g, n, b);
+
+    return (
+      <>
+        <Section title="Please, leave fedback">
+          <Feedback
+            options={['g', 'n', 'b']}
+            onLeaveFeedback={handleFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          {total === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistic
+              good={g}
+              neutral={n}
+              bad={b}
+              total={total}
+              positivePercentage={countPositiveFeedbackPercentage(g, n, b)}
+            />
+          )}
+        </Section>
+      </>
+    );
+  }
+}
+
+export default App;
+
+App.propTypes = {
+  title: PropTypes.string,
+  options: PropTypes.arrayOf([]),
+  onLeaveFeedback: PropTypes.func,
+  message: PropTypes.string,
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+  positivePercentage: PropTypes.number,
 };
-
-
