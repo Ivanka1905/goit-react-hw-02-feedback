@@ -5,27 +5,19 @@ export const ButtonContainer = styled.div`
   gap: 20px;
 `;
 
-export const ButtonG = styled.button`
-  background-color: #66cd00;
-  transition: all 500ms ease;
+export const Button = styled.button`
+  background-color: #F1C40F;
+  font-weight: 600;
+  transition: all 400ms;
   :hover {
 	cursor: pointer;
-  transform: scale(1.15);
+  color: white;
+}
+:first-child {
+  background-color: #2ECC71;
+}
+:last-child {
+  background-color: #E74C3C;
 }
 `;
 
-export const ButtonN = styled.button`
-  background-color: #e9d66b;
-  transition: all 500ms ease;
-  :hover {
-	cursor: pointer;
-  transform: scale(1.15);
-`;
-
-export const ButtonB = styled.button`
-  background-color: #ff7256;
-  transition: all 500ms ease;
-  :hover {
-	cursor: pointer;
-  transform: scale(1.15);
-`;

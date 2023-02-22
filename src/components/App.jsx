@@ -15,19 +15,19 @@ class App extends Component {
   handleFeedback = event => {
     const { name } = event.target;
     switch (name) {
-      case 'g':
+      case 'good':
         this.setState(prevState => ({
           g: prevState.g + 1,
         }));
         break;
 
-      case 'n':
+      case 'neutral':
         this.setState(prevState => ({
           n: prevState.n + 1,
         }));
         break;
 
-      case 'b':
+      case 'bad':
         this.setState(prevState => ({
           b: prevState.b + 1,
         }));
@@ -59,7 +59,7 @@ class App extends Component {
       <>
         <Section title="Please, leave fedback">
           <Feedback
-            options={['g', 'n', 'b']}
+            options={['good', 'neutral', 'bad']}
             onLeaveFeedback={handleFeedback}
           />
         </Section>
@@ -85,7 +85,7 @@ export default App;
 
 App.propTypes = {
   title: PropTypes.string,
-  options: PropTypes.arrayOf([]),
+  options: PropTypes.arrayOf(PropTypes.string),
   onLeaveFeedback: PropTypes.func,
   message: PropTypes.string,
   good: PropTypes.number,
