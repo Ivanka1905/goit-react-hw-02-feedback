@@ -11,13 +11,6 @@ const Feedback = ({ options, onLeaveFeedback }) => {
       </Button>
         })
       }
-      
-      {/* <ButtonN type="button" name={options[1]} onClick={onLeaveFeedback}>
-        Neutral
-      </ButtonN>
-      <ButtonB type="button" name={options[2]} onClick={onLeaveFeedback}>
-        Bad
-      </ButtonB> */}
     </ButtonContainer>
   );
 };
@@ -25,6 +18,6 @@ const Feedback = ({ options, onLeaveFeedback }) => {
 export default Feedback;
 
 Feedback.propTypes = {
-  name: PropTypes.string,
-  onClick: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedback: PropTypes.func,
 };

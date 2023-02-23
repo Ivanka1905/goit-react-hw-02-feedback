@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StatisticList, LiItem, LiItemB } from './Statistic.styled';
 
 const Statistic = props => {
@@ -13,5 +14,13 @@ const Statistic = props => {
     </StatisticList>
   );
 };
+
+Statistic.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+  positivePercentage: PropTypes.number,
+}
 
 export default Statistic;

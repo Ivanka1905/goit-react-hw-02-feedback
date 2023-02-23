@@ -84,13 +84,11 @@ class App extends Component {
 export default App;
 
 App.propTypes = {
-  title: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
-  onLeaveFeedback: PropTypes.func,
-  message: PropTypes.string,
-  good: PropTypes.number,
-  neutral: PropTypes.number,
-  bad: PropTypes.number,
+  handleFeedback: PropTypes.func,
+  countTotalFeedback: PropTypes.func,
+  g: PropTypes.number,
+  n: PropTypes.number,
+  b: PropTypes.number,
   total: PropTypes.number,
-  positivePercentage: PropTypes.number,
+  countPositiveFeedbackPercentage: PropTypes.func,
 };
